@@ -1,0 +1,15 @@
+services:
+  postgis:
+    image: kartoza/postgis:latest
+    container_name: gis_postgis
+    ports:
+      - "127.0.0.1:5435:5432"   # localhost only
+    environment:
+      POSTGRES_USER: gis
+      POSTGRES_PASS: gis
+      POSTGRES_DBNAME: gis
+      ALLOW_IP_RANGE: 0.0.0.0/0
+    volumes:
+      - postgis_data:/var/lib/postgresql   # keeps data across restarts
+volumes:
+  postgis_data:
